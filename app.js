@@ -1,4 +1,5 @@
 // app.js
+//test 1
 App({
   globalData: {
     atomConnected: false,     // AtomS3R-M12连接状态
