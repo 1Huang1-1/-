@@ -11,8 +11,8 @@ App({
       bloodOxygen: 0,
       motion: { x: 0, y: 0, z: 0 } // 九轴传感器数据
     },
-    aiApiKey: 'your-ai-api-key', // AI服务API密钥
-    amapKey: 'your-amap-api-key' // 高德地图API密钥
+    aiApiKey: 'your-ai-api-key', // 火山引擎AI服务API密钥
+    amapKey: '9b76c547692fbd02a094171461bad1fa' // 高德地图API密钥
   },
   
   onLaunch() {
