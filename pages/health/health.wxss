@@ -1,0 +1,156 @@
+/* pages/health/health.wxss */
+.health-container {
+  padding-bottom: 100rpx;
+}
+
+.header {
+  position: relative;
+  margin-bottom: 30rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+}
+
+.banner {
+  width: 100%;
+  height: 300rpx;
+  display: block;
+  background: linear-gradient(135deg, #1a73e8, #4e9df8);
+}
+
+.title {
+  position: absolute;
+  bottom: 30rpx;
+  left: 30rpx;
+  font-size: 44rpx;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 2rpx 4rpx rgba(0,0,0,0.3);
+}
+
+.health-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.health-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+}
+
+.temperature {
+  border-top: 8rpx solid #FF6B6B;
+}
+
+.humidity {
+  border-top: 8rpx solid #4ECDC4;
+}
+
+.blood-oxygen {
+  border-top: 8rpx solid #556270;
+}
+
+.motion {
+  border-top: 8rpx solid #FFD166;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.card-header .icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+
+.card-body {
+  display: flex;
+  align-items: flex-end;
+}
+
+.value {
+  font-size: 48rpx;
+  font-weight: bold;
+}
+
+.unit {
+  font-size: 28rpx;
+  color: #666;
+  margin-left: 10rpx;
+  margin-bottom: 5rpx;
+}
+
+.status {
+  margin-top: 15rpx;
+  font-size: 24rpx;
+  padding: 5rpx 10rpx;
+  border-radius: 8rpx;
+  display: inline-block;
+}
+
+.normal {
+  background-color: #e8f5e9;
+  color: #4CAF50;
+}
+
+.low {
+  background-color: #fff3e0;
+  color: #FF9800;
+}
+
+.high {
+  background-color: #ffebee;
+  color: #F44336;
+}
+
+.motion-values {
+  display: flex;
+  flex-direction: column;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.motion-values text {
+  margin-bottom: 5rpx;
+}
+
+.chart-container {
+  background-color: white;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+}
+
+.chart {
+  width: 100%;
+  height: 300rpx;
+}
+
+.health-tips {
+  background-color: white;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 15rpx;
+  display: block;
+  color: #333;
+}
+
+.tip {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}

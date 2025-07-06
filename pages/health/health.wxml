@@ -1,0 +1,82 @@
+<!-- pages/health/health.wxml -->
+<view class="health-container">
+  <view class="header">
+    <image src="/images/health-banner.png" class="banner"></image>
+    <text class="title">健康监测</text>
+  </view>
+  
+  <view class="status-indicator">
+    <view class="dot {{atomConnected ? 'connected' : 'disconnected'}}"></view>
+    <text>{{atomConnected ? '设备已连接' : '设备未连接'}}</text>
+  </view>
+  
+  <view class="health-cards">
+    <view class="card temperature">
+      <view class="card-header">
+        <image src="/images/temperature.png" class="icon"></image>
+        <text>温度</text>
+      </view>
+      <view class="card-body">
+        <text class="value">{{healthData.temperature.toFixed(1)}}</text>
+        <text class="unit">°C</text>
+      </view>
+      <view class="status {{getTempStatus(healthData.temperature)}}">
+        {{getTempStatusText(healthData.temperature)}}
+      </view>
+    </view>
+    
+    <view class="card humidity">
+      <view class="card-header">
+        <image src="/images/humidity.png" class="icon"></image>
+        <text>湿度</text>
+      </view>
+      <view class="card-body">
+        <text class="value">{{healthData.humidity}}</text>
+        <text class="unit">%</text>
+      </view>
+      <view class="status {{getHumidityStatus(healthData.humidity)}}">
+        {{getHumidityStatusText(healthData.humidity)}}
+      </view>
+    </view>
+    
+    <view class="card blood-oxygen">
+      <view class="card-header">
+        <image src="/images/blood-oxygen.png" class="icon"></image>
+        <text>血氧</text>
+      </view>
+      <view class="card-body">
+        <text class="value">{{healthData.bloodOxygen}}</text>
+        <text class="unit">%</text>
+      </view>
+      <view class="status {{getBloodOxygenStatus(healthData.bloodOxygen)}}">
+        {{getBloodOxygenStatusText(healthData.bloodOxygen)}}
+      </view>
+    </view>
+    
+    <view class="card motion">
+      <view class="card-header">
+        <image src="/images/motion.png" class="icon"></image>
+        <text>运动状态</text>
+      </view>
+      <view class="card-body">
+        <view class="motion-values">
+          <text>X: {{healthData.motion.x.toFixed(2)}}</text>
+          <text>Y: {{healthData.motion.y.toFixed(2)}}</text>
+          <text>Z: {{healthData.motion.z.toFixed(2)}}</text>
+        </view>
+      </view>
+      <view class="status">
+        {{getMotionStatus(healthData.motion)}}
+      </view>
+    </view>
+  </view>
+  
+  <view class="chart-container">
+    <canvas canvas-id="healthChart" class="chart"></canvas>
+  </view>
+  
+  <view class="health-tips">
+    <text class="section-title">健康小贴士</text>
+    <text class="tip">{{healthTip}}</text>
+  </view>
+</view>

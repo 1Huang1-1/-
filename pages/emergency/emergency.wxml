@@ -1,0 +1,42 @@
+<!-- pages/emergency/emergency.wxml -->
+<view class="emergency-container">
+  <view class="emergency-header">
+    <text>紧急求助</text>
+  </view>
+  
+  <view class="emergency-content">
+    <!-- 报警卡片 -->
+    <view class="emergency-card">
+      <view class="card-icon">
+        <image src="/images/police.png"></image>
+      </view>
+      <text class="card-title">报警求助</text>
+      <text class="card-desc">直接拨打110报警电话</text>
+      <button class="call-btn" bindtap="callPolice">立即报警</button>
+    </view>
+    
+    <!-- 位置信息卡片 -->
+    <view class="location-info">
+      <text class="section-title">当前位置信息</text>
+      <view class="location-detail">
+        <image src="/images/location.png" class="icon"></image>
+        <text>{{locationInfo || '正在获取位置...'}}</text>
+      </view>
+      <button class="share-btn" bindtap="shareLocation">分享位置</button>
+    </view>
+    
+    <!-- 报警历史 -->
+    <view class="history-section" wx:if="{{emergencyHistory.length > 0}}">
+      <text class="section-title">报警记录</text>
+      <view class="history-list">
+        <block wx:for="{{emergencyHistory}}" wx:key="index">
+          <view class="history-item">
+            <text class="type">{{item.type}}</text>
+            <text class="time">{{item.time}}</text>
+            <text class="location">{{item.location}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>

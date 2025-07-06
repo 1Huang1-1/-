@@ -1,0 +1,69 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/camera/camera",
+    "pages/health/health",
+    "pages/emergency/emergency"
+  ],
+  "window": {
+    "navigationBarTitleText": "青崖引",
+    "navigationBarBackgroundColor": "#1a73e8",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f8f9fa",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#7a7e83",
+    "selectedColor": "#1a73e8",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
+      },
+      {
+        "pagePath": "pages/health/health",
+        "text": "健康",
+        "iconPath": "images/health.png",
+        "selectedIconPath": "images/health-active.png"
+      },
+      {
+        "pagePath": "pages/camera/camera",
+        "text": "拍照",
+        "iconPath": "images/camera.png",
+        "selectedIconPath": "images/camera-active.png"
+      },
+      {
+        "pagePath": "pages/emergency/emergency",
+        "text": "紧急",
+        "iconPath": "images/emergency.png",
+        "selectedIconPath": "images/emergency-active.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "需要获取您的位置以提供导航服务"
+    },
+    "scope.camera": {
+      "desc": "需要访问您的相机以拍照分析"
+    },
+    "scope.record": {
+      "desc": "需要访问您的麦克风以语音播报"
+    }
+  },
+  "requiredBackgroundModes": ["location"],
+  "plugins": {
+    "amapPlugin": {
+      "version": "1.0.3",
+      "provider": "wx63ffb7b7894e99ae"
+    }
+  },
+  "useExtendedLib": {
+    "weui": true
+  },
+  "sitemapLocation": "sitemap.json"
+}

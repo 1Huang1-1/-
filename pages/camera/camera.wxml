@@ -1,0 +1,45 @@
+<!-- pages/camera/camera.wxml -->
+<view class="camera-container">
+  <!-- 实时预览区域 -->
+  <view class="preview-container" wx:if="{{!resultImage}}">
+    <image src="{{videoStream}}" class="preview-image" mode="aspectFit"></image>
+    <view class="camera-controls">
+      <button class="capture-btn" bindtap="takePhoto">拍照</button>
+      <button class="switch-mode" bindtap="toggleMode">
+        {{analysisMode === 'scene' ? '景点识别' : '物体识别'}}
+      </button>
+    </view>
+  </view>
+  
+  <!-- 结果展示区域 -->
+  <view class="result-container" wx:else>
+    <image src="{{resultImage}}" class="result-image" mode="aspectFit"></image>
+    
+    <view class="ai-analysis">
+      <view class="analysis-header">
+        <text>AI分析结果</text>
+        <view class="analysis-mode">{{analysisMode === 'scene' ? '景点识别' : '物体识别'}}</view>
+      </view>
+      
+      <view class="tags">
+        <block wx:for="{{tags}}" wx:key="index">
+          <view class="tag">{{item}}</view>
+        </block>
+      </view>
+      
+      <view class="description">{{description}}</view>
+    </view>
+    
+    <view class="action-buttons">
+      <button class="btn retake" bindtap="retake">重拍</button>
+      <button class="btn enhance" bindtap="enhanceImage">AI美化</button>
+      <button class="btn listen" bindtap="playAudio">语音播报</button>
+    </view>
+  </view>
+  
+  <!-- 处理状态 -->
+  <view class="loading" wx:if="{{isProcessing}}">
+    <image src="/images/loading.gif"></image>
+    <text>AI分析中...</text>
+  </view>
+</view>

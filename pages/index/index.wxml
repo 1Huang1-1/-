@@ -1,0 +1,77 @@
+<!-- pages/index/index.wxml -->
+<view class="page-container">
+  <!-- 顶部状态栏 -->
+  <view class="status-bar">
+    <image src="/images/atoms3r-logo.png" class="logo"></image>
+    <view class="location-info">
+      <image src="/images/location.png" class="icon"></image>
+      <text>{{locationInfo || '正在定位...'}}</text>
+    </view>
+    <view class="weather-info">
+      <image src="/images/weather.png" class="icon"></image>
+      <text>{{weather.temp}}°C | {{weather.weather}}</text>
+    </view>
+  </view>
+  
+  <!-- 健康监测卡片 -->
+  <sensor-card 
+    temperature="{{healthData.temperature}}" 
+    humidity="{{healthData.humidity}}" 
+    bloodOxygen="{{healthData.bloodOxygen}}"
+    connected="{{atomConnected}}"
+  ></sensor-card>
+  
+  <!-- 天气预报卡片 -->
+  <weather-card 
+    weather="{{weather.weather}}" 
+    temp="{{weather.temp}}" 
+    humidity="{{weather.humidity}}" 
+    wind="{{weather.wind}}"
+  ></weather-card>
+  
+  <!-- 功能区域 -->
+  <view class="function-grid">
+    <view class="grid-item" bindtap="startNavigation">
+      <image src="/images/navigation.png"></image>
+      <text>景点导航</text>
+    </view>
+    <view class="grid-item" bindtap="navigateToCamera">
+      <image src="/images/camera.png"></image>
+      <text>拍照分析</text>
+    </view>
+    <view class="grid-item" bindtap="aiAssistant">
+      <image src="/images/ai-assistant.png"></image>
+      <text>AI助手</text>
+    </view>
+    <view class="grid-item" bindtap="navigateToEmergency">
+      <image src="/images/emergency.png"></image>
+      <text>紧急求助</text>
+    </view>
+  </view>
+  
+  <!-- 景点推荐 -->
+  <view class="attraction-section">
+    <view class="section-header">
+      <text>附近景点推荐</text>
+      <view class="more-link" bindtap="viewMoreAttractions">查看更多</view>
+    </view>
+    <scroll-view class="attraction-list" scroll-x="true">
+      <block wx:for="{{attractions}}" wx:key="id">
+        <attraction-item 
+          id="{{item.id}}"
+          name="{{item.name}}"
+          image="{{item.image}}"
+          distance="{{item.distance}}"
+          rating="{{item.rating}}"
+          bindtap="viewAttractionDetail"
+        ></attraction-item>
+      </block>
+    </scroll-view>
+  </view>
+  
+  <!-- AI助手浮窗 -->
+  <view class="ai-assistant-float" bindtap="openAIChat">
+    <image src="/images/ai-assistant.png"></image>
+    <text>AI旅行助手</text>
+  </view>
+</view>
