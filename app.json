@@ -45,14 +45,17 @@
     ]
   },
   "permission": {
-    "scope.userLocation": {
-      "desc": "需要获取您的位置以提供导航服务"
-    },
     "scope.camera": {
-      "desc": "需要访问您的相机以拍照分析"
+      "desc": "需要访问相机以拍照识别景点"
     },
     "scope.record": {
-      "desc": "需要访问您的麦克风以语音播报"
+      "desc": "需要访问麦克风以播放语音介绍"
+    },
+    "scope.userLocation": {
+      "desc": "需要获取位置以提供导航服务"
+    },
+    "scope.writePhotosAlbum": {
+      "desc": "需要保存图片到系统相册"
     }
   },
   "requiredBackgroundModes": ["location"],

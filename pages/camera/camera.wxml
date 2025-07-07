@@ -1,45 +1,127 @@
 <!-- pages/camera/camera.wxml -->
-<view class="camera-container">
-  <!-- 实时预览区域 -->
-  <view class="preview-container" wx:if="{{!resultImage}}">
-    <image src="{{videoStream}}" class="preview-image" mode="aspectFit"></image>
+<view class="container">
+  <!-- 权限提示 -->
+  <view class="permission-tip" wx:if="{{!hasPermission}}">
+    <icon type="warn" size="24"></icon>
+    <text>需要获取相机和相册权限</text>
+    <button class="grant-btn" bindtap="requestPermission">允许授权</button>
+  </view>
+
+  <!-- 相册主体区域 -->
+  <view class="album-container" wx:if="{{hasPermission}}">
+    <view class="album-header">
+      <text class="album-title">我的相册</text>
+      <text class="album-count">{{albumImages.length}}张照片</text>
+    </view>
+
+    <!-- 相册图片网格 -->
+    <view class="album-grid" wx:if="{{albumImages.length > 0}}">
+      <view 
+        class="album-item" 
+        wx:for="{{albumImages}}" 
+        wx:key="index" 
+        bindtap="previewImage" 
+        data-index="{{index}}"
+      >
+        <image src="{{item}}" class="album-image" mode="aspectFill"></image>
+        <view 
+          class="delete-icon" 
+          catchtap="deleteAlbumImage" 
+          data-index="{{index}}"
+        >
+          <icon type="clear" size="16" color="#fff"></icon>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空相册提示 -->
+    <view class="empty-album" wx:if="{{albumImages.length === 0}}">
+      <icon type="photo" size="80" color="#ccc"></icon>
+      <text>相册还是空的</text>
+      <text>点击下方按钮开始拍照吧</text>
+    </view>
+  </view>
+
+  <!-- 相机弹窗 -->
+  <view class="camera-modal" wx:if="{{showCamera}}">
+    <view class="camera-header">
+      <button class="close-btn" bindtap="closeCamera">
+        <icon type="close" size="24"></icon>
+      </button>
+      <text class="camera-title">拍照</text>
+      <view class="camera-actions">
+        <button class="switch-camera" bindtap="switchCamera">
+          <icon type="switchcamera" size="24"></icon>
+        </button>
+        <button class="flash-btn" bindtap="toggleFlash">
+          <icon type="{{flashMode === 'on' ? 'success' : 'circle'}}" size="24"></icon>
+        </button>
+      </view>
+    </view>
+    
+    <camera 
+      device-position="{{cameraPosition}}" 
+      flash="{{flashMode}}" 
+      class="camera-preview"
+      binderror="onCameraError"
+    ></camera>
+    
     <view class="camera-controls">
-      <button class="capture-btn" bindtap="takePhoto">拍照</button>
-      <button class="switch-mode" bindtap="toggleMode">
-        {{analysisMode === 'scene' ? '景点识别' : '物体识别'}}
+      <button class="take-photo-btn" bindtap="takePhoto">
+        <view class="shutter"></view>
+      </button>
+      <button class="album-btn" bindtap="openSystemAlbum">
+        <icon type="album" size="28"></icon>
       </button>
     </view>
   </view>
-  
-  <!-- 结果展示区域 -->
-  <view class="result-container" wx:else>
-    <image src="{{resultImage}}" class="result-image" mode="aspectFit"></image>
-    
-    <view class="ai-analysis">
-      <view class="analysis-header">
-        <text>AI分析结果</text>
-        <view class="analysis-mode">{{analysisMode === 'scene' ? '景点识别' : '物体识别'}}</view>
-      </view>
-      
-      <view class="tags">
-        <block wx:for="{{tags}}" wx:key="index">
-          <view class="tag">{{item}}</view>
-        </block>
-      </view>
-      
-      <view class="description">{{description}}</view>
-    </view>
-    
-    <view class="action-buttons">
-      <button class="btn retake" bindtap="retake">重拍</button>
-      <button class="btn enhance" bindtap="enhanceImage">AI美化</button>
-      <button class="btn listen" bindtap="playAudio">语音播报</button>
+
+  <!-- 底部拍照按钮 -->
+  <button class="take-photo-fab" bindtap="openCamera">
+    <icon type="camera" size="28"></icon>
+  </button>
+
+  <!-- 图片预览弹窗 -->
+  <view class="preview-modal" wx:if="{{previewImagePath}}">
+    <image 
+      src="{{previewImagePath}}" 
+      class="preview-image" 
+      mode="aspectFit"
+    ></image>
+    <view class="preview-actions">
+      <button class="preview-btn delete-btn" bindtap="deletePreviewImage">
+        <icon type="clear" size="24"></icon>
+      </button>
+      <button class="preview-btn save-btn" bindtap="saveToSystemAlbum">
+        <icon type="save" size="24"></icon>
+      </button>
+      <button class="preview-btn recognize-btn" bindtap="recognizeScenic">
+        <icon type="search" size="24"></icon>
+      </button>
+      <button class="preview-btn close-btn" bindtap="closePreview">
+        <icon type="close" size="24"></icon>
+      </button>
     </view>
   </view>
-  
-  <!-- 处理状态 -->
-  <view class="loading" wx:if="{{isProcessing}}">
-    <image src="/images/loading.gif"></image>
-    <text>AI分析中...</text>
+
+  <!-- 识别结果弹窗 -->
+  <view class="result-modal" wx:if="{{recognitionResult}}">
+    <view class="result-header">
+      <text class="result-title">景点识别结果</text>
+      <button class="close-result" bindtap="closeResult">
+        <icon type="close" size="20"></icon>
+      </button>
+    </view>
+    <view class="result-content">
+      <text class="spot-name">{{recognitionResult.spotName || '未识别到景点'}}</text>
+      <view class="spot-desc" wx:if="{{recognitionResult.description}}">
+        {{recognitionResult.description}}
+      </view>
+      <view class="no-result" wx:else>暂无景点介绍</view>
+      
+      <button class="play-voice-btn" bindtap="playVoice" wx:if="{{recognitionResult.description}}">
+        {{isPlaying ? '暂停播放' : '播放介绍'}}
+      </button>
+    </view>
   </view>
 </view>
