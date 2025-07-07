@@ -173,3 +173,178 @@
   height: 50rpx;
   margin-right: 10rpx;
 }
+/* 页面整体样式 */
+page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* 艺术字容器 - 占据左上角四分之一区域 */
+.artistic-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20rpx; /* 左侧边距，适配小程序rpx单位 */
+  box-sizing: border-box;
+}
+
+/* 主标题样式 */
+.main-text {
+  font-size: 80rpx; /* 大字体，使用rpx适配不同屏幕 */
+  font-weight: bold;
+  background: linear-gradient(to right, #0f4c3f, #00b4d8); /* 深绿到青绿色渐变 */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* 副标题样式 */
+.sub-text {
+  font-size: 32rpx; /* 较小字体 */
+  background: linear-gradient(to right, #0f4c3f, #00b4d8); /* 相同渐变颜色 */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-top: 20rpx;
+}
+/* 整体容器样式 */
+.travel-diary-container {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+/* 标题栏样式 */
+.header {
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 日志列表样式 */
+.diary-list {
+  margin-bottom: 20rpx;
+}
+
+/* 日志项样式（淡黄色边框） */
+.diary-item {
+  border: 2rpx solid #f8e685; /* 淡黄色边框 */
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  background-color: #fff;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.05); /* 轻微阴影效果 */
+}
+
+/* 日志内容输入框样式 */
+.diary-content {
+  width: 100%;
+  min-height: 120rpx;
+  border: none;
+  font-size: 32rpx;
+  margin-bottom: 16rpx;
+  padding: 12rpx;
+  box-sizing: border-box;
+  background-color: #f9f9f9; /* 浅灰色背景区分输入区域 */
+  border-radius: 8rpx;
+}
+
+/* 日志元信息（时间+地点）样式 */
+.diary-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+  color: #888; /* 灰色小字体 */
+  margin-top: 10rpx;
+}
+
+.meta-text {
+  max-width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 操作按钮组样式 */
+.btn-group {
+  display: flex;
+  gap: 10rpx; /* 按钮间距 */
+}
+
+.edit-btn {
+  padding: 4rpx 16rpx;
+  background-color: #409EFF; /* 蓝色编辑按钮 */
+  color: #fff;
+  border-radius: 4rpx;
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 1.5;
+}
+
+.delete-btn {
+  padding: 4rpx 16rpx;
+  background-color: #E64340; /* 红色删除按钮 */
+  color: #fff;
+  border-radius: 4rpx;
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 1.5;
+}
+
+/* 图片上传区域样式 */
+.image-container {
+  margin-top: 16rpx;
+}
+
+.image-list {
+  display: flex;
+  gap: 10rpx;
+}
+
+.image-list image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+}
+
+.add-image-btn {
+  margin-top: 10rpx;
+  padding: 8rpx 20rpx;
+  background-color: #f0f0f0;
+  color: #666;
+  font-size: 28rpx;
+  border: none;
+  border-radius: 6rpx;
+}
+
+/* 添加新日志按钮样式（悬浮在右下角） */
+.add-btn {
+  position: fixed;
+  bottom: 40rpx;
+  right: 40rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  background-color: #409EFF; /* 蓝色按钮 */
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48rpx;
+  box-shadow: 0 4rpx 16rpx rgba(64, 158, 255, 0.3); /* 阴影效果 */
+  z-index: 100; /* 确保按钮在最上层 */
+}

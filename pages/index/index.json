@@ -1,4 +1,10 @@
 {
-  "usingComponents": {
-  }
+  "usingComponents": {},
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于记录旅游地点"
+    }
+  },
+  "style": "v2",
+  "navigationBarTitleText": "旅游日志"
 }

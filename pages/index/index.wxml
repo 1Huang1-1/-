@@ -74,4 +74,59 @@
     <image src="/images/ai-assistant.png"></image>
     <text>AI旅行助手</text>
   </view>
+
+  <!-- 大标题 -->
+  <view class="artistic-container">
+    <text class="main-text">青崖引</text>
+    <text class="sub-text">您的专属安心管家</text>
+  </view>
+  <view class="travel-diary-container">
+  <!-- 标题栏 -->
+  <view class="header">
+    <text class="title">旅游日志</text>
+  </view>
+  
+  <!-- 日志列表 -->
+  <view class="diary-list">
+    <block wx:for="{{diaries}}" wx:key="id">
+      <view class="diary-item" style="border-color: {{item.isEditing ? '#ddd' : '#f8e685'}}">
+        <!-- 日志内容（编辑状态显示输入框，否则显示文本） -->
+        <textarea 
+          class="diary-content" 
+          value="{{item.content}}" 
+          bindinput="onContentInput" 
+          data-id="{{item.id}}"
+          disabled="{{!item.isEditing}}"
+        ></textarea>
+        
+        <view class="diary-meta">
+          <!-- 时间地点信息 -->
+          <text class="meta-text">{{item.date}} · {{item.location}}</text>
+          
+          <!-- 操作按钮 -->
+          <view class="btn-group">
+            <button 
+              size="mini" 
+              class="edit-btn" 
+              bindtap="toggleEdit" 
+              data-id="{{item.id}}"
+              data-action="edit"
+            >
+              {{item.isEditing ? '完成' : '编辑'}}
+            </button>
+            <button 
+              size="mini" 
+              class="delete-btn" 
+              bindtap="deleteDiary" 
+              data-id="{{item.id}}"
+            >删除</button>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  
+  <!-- 添加新日志按钮 -->
+  <button class="add-btn" bindtap="addDiary">+ 添加新日志</button>
+  </view>
 </view>

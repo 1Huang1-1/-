@@ -188,26 +188,21 @@
 
 .camera-preview {
   width: 100%;
-  height: calc(100% - 280rpx);
+  height: calc(100% - 220rpx);
   display: block;
 }
 
 .camera-controls {
-  position: absolute; /* 改为绝对定位 */
-  bottom: 60rpx; /* 上移位置 */
-  left: 0;
-  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 30rpx;
   gap: 60rpx;
-  z-index: 10; /* 确保在预览层上方 */
 }
 
 .take-photo-btn {
-  width: 120rpx;
-  height: 120rpx;
+  width: 100rpx;
+  height: 100rpx;
   border-radius: 50%;
   background-color: white;
   display: flex;
@@ -225,9 +220,6 @@
 }
 
 .album-btn {
-  position: absolute;
-  right: 60rpx; /* 向右移动 */
-  bottom: 70rpx; /* 向上移动 */
   width: 60rpx;
   height: 60rpx;
   border-radius: 50%;
