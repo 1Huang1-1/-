@@ -48,11 +48,13 @@
     <view class="camera-header">
       <button class="close-btn" bindtap="closeCamera">
         <icon type="close" size="24"></icon>
+        <image src="/images/delete-sign.png" class="close-add-image"/>
       </button>
       <text class="camera-title">拍照</text>
       <view class="camera-actions">
         <button class="switch-camera" bindtap="switchCamera">
           <icon type="switchcamera" size="24"></icon>
+          <image src="/images/switch-camera.png" class="switch-add-image"></image> 
         </button>
         <button class="flash-btn" bindtap="toggleFlash">
           <icon type="{{flashMode === 'on' ? 'success' : 'circle'}}" size="24"></icon>
@@ -69,7 +71,9 @@
     
     <view class="camera-controls">
       <button class="take-photo-btn" bindtap="takePhoto">
-        <view class="shutter"></view>
+        <view class="shutter">
+          <image src="/images/circled.png" class="shutter-add-image"></image>
+        </view>
       </button>
       <button class="album-btn" bindtap="openSystemAlbum">
         <icon type="album" size="28"></icon>
@@ -80,6 +84,7 @@
   <!-- 底部拍照按钮 -->
   <button class="take-photo-fab" bindtap="openCamera">
     <icon type="camera" size="28"></icon>
+    <image src="/images/camera.png" class="fab-add-image"></image>  
   </button>
 
   <!-- 图片预览弹窗 -->
