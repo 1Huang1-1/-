@@ -251,6 +251,7 @@ page {
 
 /* 日志内容输入框样式 */
 .diary-content {
+  position:relative;
   width: 100%;
   min-height: 120rpx;
   border: none;
@@ -296,6 +297,9 @@ page {
 }
 
 .delete-btn {
+  position:absolute;
+  top:0;
+  right:0;
   padding: 4rpx 16rpx;
   background-color: #E64340; /* 红色删除按钮 */
   color: #fff;
@@ -303,6 +307,7 @@ page {
   font-size: 24rpx;
   height: 40rpx;
   line-height: 1.5;
+  transform:translateY(-50%);
 }
 
 /* 图片上传区域样式 */
