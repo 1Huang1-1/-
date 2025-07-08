@@ -184,7 +184,7 @@ page {
 /* 艺术字容器 - 占据左上角四分之一区域 */
 .artistic-container {
   position: absolute;
-  top: 0;
+  top:0 ;
   left: 0;
   width: 50%;
   height: 50%;
@@ -255,7 +255,7 @@ page {
   width: 100%;
   min-height: 120rpx;
   border: none;
-  font-size: 32rpx;
+  font-size: 32rpx;                                                          
   margin-bottom: 16rpx;
   padding: 12rpx;
   box-sizing: border-box;

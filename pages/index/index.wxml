@@ -75,6 +75,12 @@
     <text>AI旅行助手</text>
   </view>
 
+<!-- 语音交互状态展示（可选） -->
+<view class="status-panel" wx:if="{{isListening || isPlaying}}">
+  <text wx:if="{{isListening}}">正在录音，请说话...</text>
+  <text wx:if="{{isPlaying}}">正在播放智能体回复...</text>
+</view>
+
   <!-- 大标题 -->
   <view class="artistic-container">
     <text class="main-text">青崖引</text>
