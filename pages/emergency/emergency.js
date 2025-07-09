@@ -138,6 +138,7 @@ Page({
             title: "2. 使用定位",
             desc: "记录坐标，尝试退回最近路标"
           },
+
         ]
       },
       {
@@ -174,8 +175,9 @@ Page({
       }
     ],
     showModal: false,
-    currentEmergency: {}
+    currentEmergency: {},
   },
+  
 
   // 显示详情
   showDetail(e) {
@@ -207,5 +209,6 @@ Page({
       title: '登山紧急处理指南',
       path: '/pages/emergency/emergency'
     }
-  }
+  },
+
 });

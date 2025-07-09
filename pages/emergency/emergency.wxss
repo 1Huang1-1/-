@@ -174,7 +174,7 @@
 
 /* 紧急项目列表 */
 .emergency-list {
-  margin-top: 20rpx;
+  margin-bottom: 0rpx;
 }
 
 .emergency-item {
@@ -236,3 +236,4 @@
   color: white;
   border-radius: 50rpx;
 }
+

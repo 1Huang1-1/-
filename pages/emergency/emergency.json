@@ -2,6 +2,10 @@
   "navigationBarTitleText": "紧急呼救",
   "navigationBarTextStyle": "white",
   "navigationBarBackgroundColor": "#FF4D4F",
-  "backgroundColor": "#FFF2F0"
-  
+  "backgroundColor": "#FFF2F0",
+  "permission": {
+    "scope.writeStorage": {
+      "desc": "用于存储紧急联系人信息"
+    }
+  }
 }

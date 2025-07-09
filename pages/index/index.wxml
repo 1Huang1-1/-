@@ -133,6 +133,6 @@
   </view>
   
   <!-- 添加新日志按钮 -->
-  <button class="add-btn" bindtap="addDiary">+ 添加新日志</button>
+  <button class="add-btn" bindtap="addDiary">添加新日志</button>
   </view>
 </view>

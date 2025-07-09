@@ -287,18 +287,19 @@ page {
 }
 
 .edit-btn {
+  bottom:5px;
   padding: 4rpx 16rpx;
   background-color: #409EFF; /* 蓝色编辑按钮 */
   color: #fff;
   border-radius: 4rpx;
   font-size: 24rpx;
-  height: 40rpx;
+  height: 30rpx;
   line-height: 1.5;
+  margin-right:10rpx;
 }
 
 .delete-btn {
-  position:absolute;
-  top:0;
+  bottom:5px;
   right:0;
   padding: 4rpx 16rpx;
   background-color: #E64340; /* 红色删除按钮 */
