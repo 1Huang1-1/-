@@ -72,7 +72,7 @@
   <!-- AI助手浮窗 -->
   <view class="ai-assistant-float" bindtap="openAIChat">
     <image src="/images/ai-assistant.png"></image>
-    <text>AI旅行助手</text>
+    <button bindtap="handleOpenAIChat">AI旅行助手</button>
   </view>
 
 <!-- 语音交互状态展示（可选） -->

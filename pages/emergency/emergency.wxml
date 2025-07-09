@@ -39,4 +39,37 @@
       </view>
     </view>
   </view>
+  <view class="container">
+  <!-- 顶部警示栏 -->
+  <view class="header">
+    <image src="/images/warning.png" mode="widthFix" class="warning-icon"></image>
+    <text>紧急情况处理指南</text>
+  </view>
+
+  <!-- 紧急情况列表 -->
+  <view class="emergency-list">
+    <block wx:for="{{emergencyList}}" wx:key="type">
+      <view class="emergency-item" bindtap="showDetail" data-index="{{index}}">
+        <view class="item-header">
+          <image src="{{item.icon}}" mode="aspectFill"></image>
+          <text>{{item.type}}</text>
+          <image src="/images/arrow-right.png" mode="widthFix" class="arrow"></image>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 详情弹窗 -->
+  <modal wx:if="{{showModal}}" title="{{currentEmergency.type}}" visible="{{showModal}}" bindcancel="hideModal">
+    <view class="modal-content">
+      <view wx:for="{{currentEmergency.steps}}" wx:key="*this" class="step">
+        <text class="step-title">{{item.title}}</text>
+        <text class="step-desc">{{item.desc}}</text>
+      </view>
+    </view>
+    <view slot="footer" class="modal-footer">
+      <button bindtap="callEmergency">一键求救</button>
+    </view>
+  </modal>
+</view>
 </view>

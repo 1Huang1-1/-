@@ -149,3 +149,90 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* 基础样式 */
+.container {
+  padding: 20rpx;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  background-color: #FF4D4F;
+  color: white;
+  border-radius: 16rpx;
+  margin-bottom: 30rpx;
+}
+
+.warning-icon {
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 20rpx;
+}
+
+/* 紧急项目列表 */
+.emergency-list {
+  margin-top: 20rpx;
+}
+
+.emergency-item {
+  background: white;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.1);
+}
+
+.item-header {
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.item-header image {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 20rpx;
+}
+
+.item-header text {
+  flex: 1;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.arrow {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+/* 弹窗样式 */
+.modal-content {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 20rpx;
+}
+
+.step {
+  margin-bottom: 30rpx;
+}
+
+.step-title {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10rpx;
+  color: #FF4D4F;
+}
+
+.step-desc {
+  display: block;
+  color: #666;
+  line-height: 1.6;
+}
+
+.modal-footer button {
+  background-color: #FF4D4F;
+  color: white;
+  border-radius: 50rpx;
+}

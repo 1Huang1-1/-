@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/camera/camera",
     "pages/health/health",
-    "pages/emergency/emergency"
+    "pages/emergency/emergency",
+    "utils/voiceUtil.js"
   ],
   "window": {
     "navigationBarTitleText": "青崖引",
@@ -58,7 +59,9 @@
       "desc": "需要保存图片到系统相册"
     }
   },
-  "requiredBackgroundModes": ["location"],
+  "requiredBackgroundModes": [
+    "location"
+  ],
   "plugins": {
     "amapPlugin": {
       "version": "1.0.3",

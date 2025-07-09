@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "紧急呼救",
-  "navigationBarTextStyle": "white"
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#FF4D4F",
+  "backgroundColor": "#FFF2F0"
+  
 }

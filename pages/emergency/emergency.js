@@ -100,5 +100,112 @@ Page({
         });
       }
     });
+  },
+
+  data: {
+    emergencyList: [
+      {
+        type: "扭伤/骨折",
+        icon: "/images/sprain.png",
+        steps: [
+          {
+            title: "1. 立即停止活动",
+            desc: "保持静止，避免二次伤害"
+          },
+          {
+            title: "2. 固定伤处",
+            desc: "用登山杖、绷带或衣物固定受伤部位"
+          },
+          {
+            title: "3. 冷敷消肿",
+            desc: "用冰袋或冷水毛巾敷伤处（15分钟/次）"
+          },
+          {
+            title: "4. 联系救援",
+            desc: "拨打110/120或联系队友协助下山"
+          }
+        ]
+      },
+      {
+        type: "迷路",
+        icon: "/images/lost.png",
+        steps: [
+          {
+            title: "1. 原地停留",
+            desc: "避免盲目走动消耗体力"
+          },
+          {
+            title: "2. 使用定位",
+            desc: "记录坐标，尝试退回最近路标"
+          },
+        ]
+      },
+      {
+        type: "失温",
+        icon: "/images/hypothermia.png",
+        steps: [
+          {
+            title: "1. 转移至避风处",
+            desc: "用急救毯或干燥衣物包裹身体"
+          },
+          {
+            title: "2. 补充热量",
+            desc: "饮用温水（勿饮酒），吃高糖食物"
+          },
+          {
+            title: "3. 核心部位回温",
+            desc: "将发热贴放在颈部、腋下等部位"
+          }
+        ]
+      },
+      {
+        type: "动物袭击",
+        icon: "/images/snake.png",
+        steps: [
+          {
+            title: "蛇虫咬伤",
+            desc: "保持冷静，包扎近心端，勿用嘴吸毒液"
+          },
+          {
+            title: "大型动物",
+            desc: "避免对视，缓慢后退，用登山杖自卫"
+          }
+        ]
+      }
+    ],
+    showModal: false,
+    currentEmergency: {}
+  },
+
+  // 显示详情
+  showDetail(e) {
+    const index = e.currentTarget.dataset.index
+    this.setData({
+      currentEmergency: this.data.emergencyList[index],
+      showModal: true
+    })
+  },
+
+  // 隐藏弹窗
+  hideModal() {
+    this.setData({ showModal: false })
+  },
+
+  // 紧急呼叫
+  callEmergency() {
+    wx.makePhoneCall({
+      phoneNumber: '110',
+      success: () => {
+        wx.showToast({ title: '已拨打求救电话', icon: 'success' })
+      }
+    })
+  },
+
+  // 页面分享功能
+  onShareAppMessage() {
+    return {
+      title: '登山紧急处理指南',
+      path: '/pages/emergency/emergency'
+    }
   }
 });

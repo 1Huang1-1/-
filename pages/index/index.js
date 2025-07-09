@@ -318,88 +318,52 @@ Page({
     this.setData({ diaries });
   },
 
-  data: {
-    socketTask: null,    // 小程序 WebSocket 任务对象
-    // 替换为你的火山引擎配置（建议通过环境变量或云开发隐藏密钥）
-    VE_API_KEY: 'sk-bb6128a39b60422aa29bc5f3942a3060bfge8g7y6o7qp952', 
-    VE_MODEL: 'AG-voice-chat-agent',       // 智能体模型
+  data:{
+    socketTask:null
   },
 
-  onLoad() {
-    // 初始化 WebSocket 连接（可在页面加载时预连，或点击浮窗时连）
-    this.initWebSocket();
+   // 点击事件处理函数
+   handleOpenAIChat() {
+    // 调用火山引擎智能体API
+    this.callVolcEngineAI();
   },
 
-  onUnload() {
-    // 页面卸载时关闭连接
-    this.closeWebSocket();
-  },
-
-  // 初始化 WebSocket（适配小程序 API）
-  initWebSocket() {
-    const { VE_API_KEY, VE_MODEL } = this.data;
-    // 火山引擎 WebSocket 地址
-    const wsUrl = `wss://ai-gateway.vei.volces.com/v1/realtime?model=${VE_MODEL}`; 
-
+  callVolcEngineAI() {
+    const wsUrl = 'wss://ai-gateway.vei.volces.com/v1/realtime?model=AG-voice-chat-agent';
+    const apiKey='sk-bb6128a39b60422aa29bc5f3942a3060bfge8g7y6o7qp952';
     // 小程序创建 WebSocket 连接
-    this.socketTask = wx.connectSocket({
+    const socketTask = wx.connectSocket({
       url: wsUrl,
-      header: {
-        // 鉴权：替换为实际密钥（务必隐藏密钥，避免硬编码！）
-        'openai-insecure-api-key': 'sk-bb6128a39b60422aa29bc5f3942a3060bfge8g7y6o7qp952', 
-      },
-      protocols: ['realtime'],
+      
+      method: 'GET' // 按实际请求方法，WebSocket 协议本身是基于 HTTP 握手，这里填对应方式
     });
-
-    // 监听连接成功
-    this.socketTask.onOpen((res) => {
-      // 连接成功后发送初始化指令（与火山引擎协议对齐）
-      this.sendInitMessage();
+  
+    socketTask.onOpen((event) => {
+      console.log('WebSocket connection opened:', event);
+      console.log("Connected to server.");
+      // 发送数据，小程序里 send 参数要求符合规范，按需调整
+      socketTask.send({
+        data: JSON.stringify({
+          type: "response.create",
+          response: {
+            modalities: ["text", "audio"],
+            instructions: "Please assist..." 
+          }
+        })
+      });
     });
-
-    // 监听消息接收
-    this.socketTask.onMessage((res) => {
-      const data = JSON.parse(res.data);
-      // 处理服务端响应（如语音合成、文本回复等，需根据业务解析）
-      this.handleServerResponse(data);
+  
+    socketTask.onMessage((event) => {
+      console.log('Message from server:', event.data);
     });
-
-    // 监听连接关闭
-    this.socketTask.onClose((res) => {
-      console.log('WebSocket 已关闭', res);
+  
+    socketTask.onClose((event) => {
+      console.log('WebSocket connection closed:', event);
     });
-
-    // 监听错误
-    this.socketTask.onError((err) => {
-      console.error('WebSocket 错误', err);
+  
+    socketTask.onError((error) => {
+      console.error('WebSocket error:', error);
     });
-  },
-
-  // 发送初始化消息（与火山引擎协议交互）
-  sendInitMessage() {
-    const message = {
-      type: "response.create",
-      response: {
-        modalities: ["text", "audio"], // 支持文本、语音交互
-        instructions: "Please assist the user.", // 给智能体的指令
-      },
-    };
-    this.socketTask.send({ data: JSON.stringify(message) });
-  },
-
-  // 处理服务端响应（需根据智能体协议解析，示例仅打印关键信息）
-  handleServerResponse(data) {
-    // TODO: 解析语音流、文本回复等，可结合小程序语音播放 API 处理 audio
-    console.log('服务端响应解析:', data);
-    // 这里可扩展逻辑，比如拿到回复文本后展示到页面，或处理语音播放等
-  },
-
-  // 关闭 WebSocket 连接
-  closeWebSocket() {
-    if (this.socketTask) {
-      this.socketTask.close();
-      this.socketTask = null;
-    }
-  },
+  }
 
 });

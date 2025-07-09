@@ -184,7 +184,7 @@ page {
 /* 艺术字容器 - 占据左上角四分之一区域 */
 .artistic-container {
   position: absolute;
-  top:0 ;
+  top:10 ;
   left: 0;
   width: 50%;
   height: 50%;
