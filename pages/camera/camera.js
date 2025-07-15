@@ -1,4 +1,5 @@
 // pages/camera/camera.js
+//仅用于测试
 const app = getApp();
 wx.cloud.init({ env: app.globalData.envId }); 
 
